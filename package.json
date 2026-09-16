@@ -1,0 +1,115 @@
+{
+  "name": "three-slicer-viewer",
+  "version": "0.3.0",
+  "description": "The three-slicer viewer without the slicer \u2014 model loading, G-code parsing, GPU toolpath rendering and the settings transforms, under MIT. Plug a slicer in through the `slicer` prop.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./toolpath": {
+      "types": "./types/toolpath.d.ts",
+      "default": "./dist/toolpath.js"
+    },
+    "./gcode": {
+      "types": "./types/gcode.d.ts",
+      "default": "./dist/gcode_parse.js"
+    },
+    "./loaders": {
+      "types": "./types/loaders.d.ts",
+      "default": "./dist/model_loaders.js"
+    },
+    "./settings": {
+      "types": "./types/settings.d.ts",
+      "default": "./src/settings/index.js"
+    },
+    "./data": {
+      "types": "./types/data.d.ts",
+      "default": "./src/data.js"
+    },
+    "./package.json": "./package.json",
+    "./toggle": {
+      "types": "./types/toggle.d.ts",
+      "default": "./src/settings/toggle_eval.js"
+    },
+    "./components": {
+      "types": "./types/components.d.ts",
+      "default": "./dist/components.js"
+    }
+  },
+  "files": [
+    "COMPONENTS.md",
+    "LICENSE",
+    "README.md",
+    "THIRD-PARTY-NOTICES.md",
+    "TOOLPATH_SPEC.md",
+    "VIEWER.md",
+    "data",
+    "dist",
+    "src/data.js",
+    "src/settings",
+    "types",
+    "!**/.omc"
+  ],
+  "keywords": [
+    "3d-printing",
+    "3d-printer",
+    "viewer",
+    "gcode",
+    "gcode-viewer",
+    "toolpath",
+    "stl",
+    "obj",
+    "3mf",
+    "amf",
+    "ply",
+    "sl1",
+    "sla",
+    "resin",
+    "three",
+    "three.js",
+    "threejs",
+    "react",
+    "webgl",
+    "model-viewer",
+    "three-slicer"
+  ],
+  "homepage": "https://slicer.kimgh06.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimgh06/three-slicer-viewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kimgh06/three-slicer-viewer/issues"
+  },
+  "peerDependencies": {
+    "three": "^0.160.0",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "three": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.160.0",
+    "vite": "^5.4.11"
+  },
+  "scripts": {
+    "build": "vite build && cp src/make_worker.js dist/make_worker.js",
+    "prepublishOnly": "npm run build && node tests/test_version_lockstep.mjs && node tests/test_toolpath_contract.mjs",
+    "test": "for f in tests/test_*.mjs; do node $f || exit 1; done"
+  }
+}
